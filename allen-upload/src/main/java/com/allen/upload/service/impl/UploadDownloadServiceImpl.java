@@ -121,12 +121,8 @@ public class UploadDownloadServiceImpl implements IUploadDownloadService {
     private String getFileUploadRootPath(String fileName , boolean backVo){
         String rootDir = uploadConfig.getUploadRootDir();
 
-        if (ImageUtil.isImageByName(fileName)){
-            rootDir = uploadConfig.getNginxRootDir();
-
-            if (backVo){
-                rootDir = uploadConfig.getNginxUrl();
-            }
+        if (ImageUtil.isImageByName(fileName) && backVo){
+            rootDir = uploadConfig.getNginxUrl();
         }
         rootDir = FileUtils.removeEndMark(rootDir);
         return rootDir;

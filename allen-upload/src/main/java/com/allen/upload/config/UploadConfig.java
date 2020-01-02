@@ -28,11 +28,6 @@ public class UploadConfig {
     @Setter
     private String nginxUrl;
 
-    //图片上传root路径
-    @Getter
-    @Setter
-    private String nginxRootDir;
-
     @Bean
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
