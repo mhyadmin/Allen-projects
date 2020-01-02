@@ -48,7 +48,7 @@ public class AbsolutePathController {
         //上传到项目static路径下
         file.transferTo(targetFile);
         // 绝对路径显示  images/file.getOriginalFilename()
-        return Result.ok("上传成功");
+        return Result.ok("上传成功").setData("http://localhost:9001/images/"+file.getOriginalFilename());
     }
 
 
