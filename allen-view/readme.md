@@ -5,6 +5,8 @@
 ### 基于yml 或者properties配置文件
 
 *  上传的文件存放在某盘某目录下，如  E:/Practices/test
+
+
 具体配置:
 web:
   upload-path: E:/Practices/test
