@@ -17,46 +17,43 @@ import java.io.File;
 
 /**
  * @program: Allen-projects
- * @description: AbsolutePathController
+ * @description: OutController
  *
- * 绝对路径，文件存放在resources的静态目录static下
+ * 外部路径配置，然后在WebMvcConfig配置
+ *  registry.addResourceHandler("/image/**").addResourceLocations("file:" + uploadUrl); // 上传路径映射 会使spring boot的自动配置失效
  *
  * 访问方式：
- * http://localhost:8002/images/test/1443749371675.jpeg
- *
- * 即是static目录下的images下的test下的文件
+ * http://localhost:8002/image/test/1443749371675.jpeg
  *
  * @author: allen小哥
- * @Date: 2020-01-01 11:38
+ * @Date: 2020-01-04 10:38
  **/
 @RestController
-@RequestMapping("/absolute")
-@Api(tags = "上传绝对路径接口")
+@RequestMapping("/out")
+@Api(tags = "上传外部接口")
 @Slf4j
-public class AbsolutePathController {
+public class OutController {
 
+    @Value("${out.uploadUrl}")
+    private String uploadUrl;
 
-    @Value("${server.port}")
-    private Integer port;
-
-    @PostMapping("uploadToProject")
+    @PostMapping("upload")
     @ApiOperation(value = "文件上传")
     public Result uploadToProject(MultipartFile file , HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-        //获取项目下static的路径
-        File staticFilePath = ResourceUtils.getFile("classpath:static");
-        log.info("stati路径:{}",staticFilePath);
-        File targetFile2 = new File(staticFilePath+File.separator+"images");
+        log.info("上传的首路径:{}",uploadUrl);
+
+        File targetFile2 = new File(uploadUrl+"test");
         if (!targetFile2.exists()&& !targetFile2.isDirectory()){
             targetFile2.mkdir();
         }
         File targetFile = new File(targetFile2,file.getOriginalFilename());
 
         log.info("targetFile=="+targetFile);
-        //上传到项目static路径下
+        //上传到外部目录下
         file.transferTo(targetFile);
         // 绝对路径显示  images/file.getOriginalFilename()
-        return Result.ok("上传成功").setData("http://localhost:"+port+"/images/"+file.getOriginalFilename());
+        return Result.ok("上传成功").setData("http://localhost:8002/image/test/"+file.getOriginalFilename());
     }
 
 
