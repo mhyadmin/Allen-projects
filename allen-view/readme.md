@@ -8,12 +8,13 @@
 
 
 具体配置:
-web:
-  upload-path: E:/Practices/test
-  front-path:  E:/Practices
-spring:
-  resources:
-    static-locations: file:${web.upload-path},file:${web.front-path}
+    
+    web:
+      upload-path: E:/Practices/test
+      front-path:  E:/Practices
+    spring:
+      resources:
+        static-locations: file:${web.upload-path},file:${web.front-path}
 
 访问方式：IP+端口/文件名
   *  现在：http://localhost:8003/1442823076292.jpeg
