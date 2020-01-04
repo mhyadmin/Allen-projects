@@ -1,0 +1,9 @@
+server:
+  port: 8003
+
+web:
+  upload-path: E:/Practices/test
+  front-path:  E:/Practices
+spring:
+  resources:
+    static-locations: file:${web.upload-path},file:${web.front-path}

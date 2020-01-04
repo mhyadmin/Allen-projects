@@ -22,15 +22,7 @@ server:
 
 mybatis-plus:
   mapper-locations: classpath*:mapper/*.xml
-
-logging:
-  level:
-    com:
-      hdvon: DEBUG
-    org:
-      springframework:
-        boot:
-          autoconfigure: ERROR
+#文件处理路径
 upload:
   upload_root_dir: /home/ywpt_resouce/ywpt_upload/
   upload_size: 20971520
@@ -38,3 +30,5 @@ upload:
 
 out:
   uploadUrl: /tools/images/
+
+
